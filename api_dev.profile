@@ -31,8 +31,8 @@ function api_dev_profile_modules() {
  */
 function api_dev_profile_details() {
   return array(
-    'name' => 'API module development profile',
-    'description' => 'This profile is for developing and testing the API module.',
+    'name' => 'API module development',
+    'description' => 'Select this profile to install and configure Drupal for developing and testing the API module.',
   );
 }
 
