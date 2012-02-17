@@ -16,7 +16,7 @@ function api_dev_profile_modules() {
     'block', 'filter', 'node', 'system', 'user',
     
     // Enable optional core module.
-    'comment', 'help', 'menu', 'watchdog',
+    'comment', 'help', 'menu', 'dblog',
 
     // Enable contributed modules.
     'api', 'ctools', 'devel', 'drupal_queue', 'grammar_parser', 'simpletest',
