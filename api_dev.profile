@@ -44,6 +44,5 @@ function api_dev_profile_details() {
  *   screen.
  */
 function api_dev_profile_final() {
-  variable_set();
-  db_query();
 }
+
