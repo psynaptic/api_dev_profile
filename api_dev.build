@@ -1,0 +1,23 @@
+; Stub make file for the api_dev profile.
+
+; Drush make
+
+api = 2
+
+; Drupal core
+
+core = 6.x
+projects[drupal][version] = 6.x
+
+; Simpletest module requires some core patches.
+
+projects[drupal][patch][] = http://drupalcode.org/project/simpletest.git/blob_plain/refs/heads/6.x-2.x:/D6-core-simpletest.patch
+projects[drupal][patch][] = http://drupal.org/files/issues/simpletest_drupal.js_.patch
+
+; Installation profile
+
+projects[api_dev][type] = profile
+projects[api_dev][download][type] = git
+projects[api_dev][download][url] = https://github.com/psynaptic/api_dev_profile.git
+projects[api_dev][download][branch] = 6.x-1.x
+
