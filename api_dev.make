@@ -20,6 +20,7 @@ projects[] = drupal_queue
 projects[api][type] = module
 projects[api][download][type] = git
 projects[api][download][url] = http://git.drupal.org/project/api
+projects[api][download][branch] = 6.x-1.x
 
 ; Grammar parser maintainer doesn't want to release a 6.x version so we must
 ; download 7.x and apply a patch to change the core version in the info file.
