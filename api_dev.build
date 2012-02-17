@@ -1,4 +1,8 @@
 ; Stub make file for the api_dev profile.
+;
+; Run drush make api_dev.build <site> to build the full Drupal platform.
+;
+; api_dev.make is processed when the installation profile is downloaded.
 
 ; Drush make
 
@@ -8,11 +12,6 @@ api = 2
 
 core = 6.x
 projects[drupal][version] = 6.x
-
-; Simpletest module requires some core patches.
-
-projects[drupal][patch][] = http://drupalcode.org/project/simpletest.git/blob_plain/refs/heads/6.x-2.x:/D6-core-simpletest.patch
-projects[drupal][patch][] = http://drupal.org/files/issues/simpletest_drupal.js_.patch
 
 ; Installation profile
 
