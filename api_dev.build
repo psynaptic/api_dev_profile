@@ -1,8 +1,4 @@
 ; Make file for api_dev profile.
-;
-; Run drush make api_dev.build <site> to build the full Drupal platform.
-;
-; api_dev.make is processed when the installation profile is downloaded.
 
 ; Drush make
 
