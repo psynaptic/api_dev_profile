@@ -28,7 +28,7 @@ drush make /path/to/api_dev.build <target>
 ```
 
 If you want to stop drush make from adding metadata to info files you should
-invoke drush make with the --no-gitinfofile option.
+invoke drush with the --no-gitinfofile option.
 
 ```
 drush make --working-copy --no-gitinfofile --prepare-install --contrib-destination=sites/all /path/to/api_dev.build <target>
