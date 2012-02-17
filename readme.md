@@ -1,6 +1,2 @@
-API Development Profile
-=======================
-
-This is an installation profile for development and testing of the Drupal API
-module.
-
+The master branch of this repository has been abandoned. Please use the version
+branches instead.
