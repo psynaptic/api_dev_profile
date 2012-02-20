@@ -28,7 +28,7 @@ projects[api][type] = module
 projects[api][download][type] = git
 projects[api][download][url] = http://git.drupal.org/project/api
 projects[api][download][branch] = 6.x-1.x
-projects[api][[patch][] = https://raw.github.com/gist/1872130/52d2724608d46163c29d284fdba9500f2b853e6f/gistfile1.diff
+projects[api][patch][] = https://raw.github.com/gist/1872130/52d2724608d46163c29d284fdba9500f2b853e6f/gistfile1.diff
 
 ; Grammar parser maintainer doesn't want to release a 6.x version so we must
 ; download 7.x and apply a patch to change the core version in the info file.
