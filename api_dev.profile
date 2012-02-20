@@ -4,6 +4,9 @@
  * Install profile for developing and testing the API module.
  */
 
+// Fake the simpletest install requirements.
+$GLOBALS['simpletest_installed'] = TRUE;
+
 /**
  * Return an array of the modules to be enabled when this profile is installed.
  *
