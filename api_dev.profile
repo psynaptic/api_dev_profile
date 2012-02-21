@@ -47,29 +47,53 @@ function api_dev_profile_details() {
  *   screen.
  */
 function api_dev_profile_tasks() {
+  api_dev_tests_branch_data_import();
+  api_dev_php_branch_data_import();
+
+  variable_set('site_frontpage', 'api/api');
+}
+
+/**
+ * Imports API Tests branch data for running simpletests against.
+ */
+function api_dev_tests_branch_data_import() {
+  $document_root = str_replace('install.php', '', $_SERVER['SCRIPT_FILENAME']);
+
+  $branch = (object) array(
+    'branch_name' => 'tests',
+    'project' => 'api',
+    'type' => 'files',
+    'title' => st('API Tests'),
+    'project_title' => 'api',
+    'status' => 1,
+    'data' => array(
+      'directories' => $document_root . drupal_get_path('module', 'api') . '/tests/sample',
+      'excluded_directories' => '',
+    ),
+  );
+
+  // Insert the new branch data.
+  db_query('INSERT INTO {api_branch} (branch_name, project, type, title, project_title, status, data) VALUES ("%s", "%s", "%s", "%s", "%s", %d, "%s")', $branch->branch_name, $branch->project, $branch->type, $branch->title, $branch->project_title, $branch->status,  serialize($branch->data));
+}
+
+/**
+ * Adjusts the default PHP branch to use the settings needed for simpletest.
+ */
+function api_dev_php_branch_data_import() {
   // Calculate the base URL to be used for the function summary file URL.
   $base_url = $_SERVER['HTTP_ORIGIN'] . str_replace('install.php', '', $_SERVER['SCRIPT_NAME']);
 
-  // The branch_id for the PHP branch should always be 1 but we'll check anyway
-  // to be absolutely sure.
-  $php_branch_object = db_fetch_object(db_query('SELECT branch_id FROM {api_branch} WHERE branch_name = "php"'));
-  $php_branch_id = $php_branch_object->branch_id;
-
   // Generate the required branch data to be injected into the database.
-  $php_branch_data = array(
+  $branch_data = array(
     'summary' => $base_url . drupal_get_path('module', 'api') . '/tests/php_sample/funcsummary.txt',
     'path' => 'http://example.com/function/!function',
   );
 
-  // Update the PHP branch with the new data.
-  db_query('UPDATE {api_branch} SET data = "%s" WHERE branch_id = %d', serialize($php_branch_data), $php_branch_id);
+  // The branch_id for the PHP branch should always be 1 but we'll check anyway
+  // to be absolutely sure.
+  $branch_id = db_result(db_query('SELECT branch_id FROM {api_branch} WHERE branch_name = "php"'));
 
-  $document_root = str_replace('install.php', '', $_SERVER['SCRIPT_FILENAME']);
-  // Insert the new branch data.
-  $api_tests_branch_data = array(
-    'directories' => $document_root . drupal_get_path('module', 'api') . '/tests/sample',
-    'excluded_directories' => '',
-  );
-  db_query('INSERT INTO {api_branch} (branch_name, project, type, title, project_title, status, data) VALUES ("tests", "api", "files", "API Tests", "api", 1, "%s")', serialize($api_tests_branch_data));
+  // Update the PHP branch with the new data.
+  db_query('UPDATE {api_branch} SET data = "%s" WHERE branch_id = %d', serialize($branch_data), $branch_id);
 }
 
