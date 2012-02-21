@@ -3,7 +3,7 @@ API Development Profile
 
 This is an installation profile for developing and testing the API module.
 
-PROFILE
+Details
 -------
 
 The build file will download and prepare a Drupal source tree containing the
@@ -15,12 +15,15 @@ following:
   fatal errors in tests" patch.
 * Grammar parser, autoload, ctools, devel, and drupal_queue modules.
 
-DEPENDENCIES
+The profile will enable the above modules and import some standard branch data
+used by the API module tests.
+
+Dependencies
 ------------
 
 * Drush 5.x (or an older version of drush and drush make).
 
-USAGE
+Usage
 -----
 
 ```
