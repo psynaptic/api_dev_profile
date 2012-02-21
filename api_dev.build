@@ -1,44 +1,43 @@
 ; Make file for api_dev profile.
 
-; Drush make
-
+; Drush make API version
 api = 2
 
 ; Drupal core
-
 core = 6.x
 projects[drupal][version] = 6.x
 
 ; Installation profile
-
 projects[api_dev][type] = profile
 projects[api_dev][download][type] = git
 projects[api_dev][download][url] = https://github.com/psynaptic/api_dev_profile.git
 projects[api_dev][download][branch] = 6.x-1.x
 
-; Contributed modules
-
+; Required contrib modules.
 projects[] = autoload
 projects[] = ctools
 projects[] = devel
 projects[] = drupal_queue
 
-; Clone api module from git so we can work on it.
+; Clone API module from git so we can immediately start working with it.
 projects[api][type] = module
 projects[api][download][type] = git
 projects[api][download][url] = http://git.drupal.org/project/api
 projects[api][download][branch] = 6.x-1.x
 projects[api][patch][] = https://raw.github.com/gist/1872130/52d2724608d46163c29d284fdba9500f2b853e6f/gistfile1.diff
 
-; Grammar parser maintainer doesn't want to release a 6.x version so we must
+; Grammar Parser maintainer doesn't want to release a 6.x version so we must
 ; download 7.x and apply a patch to change the core version in the info file.
+;
+; Using the latest dev version from git to avoid issue with renamed engine
+; paths. @see http://drupal.org/node/1188242 for more info.
 projects[grammar_parser][type] = module
-projects[grammar_parser][download][type] = file
-projects[grammar_parser][download][url] = http://ftp.drupal.org/files/projects/grammar_parser-7.x-1.1.tar.gz
-projects[grammar_parser][patch][994518][url] = http://drupal.org/files/issues/grammar_parser.info.patch
-projects[grammar_parser][patch][994518][md5] = f46a6cdf5e86c8067e051f06f276de87
+projects[grammar_parser][download][type] = git
+projects[grammar_parser][download][url] = http://git.drupal.org/project/grammar_parser
+projects[grammar_parser][download][branch] = 7.x-1.x
+projects[grammar_parser][patch][] = http://drupal.org/files/issues/994518.patch
 
-; Simpletest module requires some core patches.
+; Install Simpletest module, which requires some core patches to function.
 projects[] = simpletest
 projects[drupal][patch][] = http://drupalcode.org/project/simpletest.git/blob_plain/refs/heads/6.x-2.x:/D6-core-simpletest.patch
 projects[drupal][patch][] = http://drupal.org/files/issues/simpletest_drupal.js_.patch
