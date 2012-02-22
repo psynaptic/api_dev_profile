@@ -47,16 +47,47 @@ function api_dev_profile_details() {
  *   screen.
  */
 function api_dev_profile_tasks() {
-  api_dev_tests_branch_data_import();
-  api_dev_php_branch_data_import();
+  _api_dev_tests_branch_data_import();
+  _api_dev_php_branch_data_import();
+  _api_dev_set_blocks();
 
   variable_set('site_frontpage', 'api/api');
+}
+
+function _api_dev_set_blocks() {
+  $blocks = array();
+
+  $blocks['api_navigation'] = array(
+    'module' => 'api',
+    'delta' => 'navigation',
+    'region' => 'left',
+    'weight' => -10,
+  );
+  $blocks['api_search'] = array(
+    'module' => 'api',
+    'delta' => 'api-search',
+    'region' => 'left',
+    'weight' => -9,
+  );
+  $blocks['devel_menu'] = array(
+    'module' => 'menu',
+    'delta' => 'devel',
+    'region' => 'left',
+    'weight' => -8,
+  );
+
+  // Populate the blocks table.
+  _block_rehash();
+
+  foreach ($blocks as $block) {
+    db_query("UPDATE {blocks} SET status = 1, region = '%s', theme = 'garland' WHERE module = '%s' AND delta = '%s'", $block['region'], $block['module'], $block['delta']);
+  }
 }
 
 /**
  * Imports API Tests branch data for running simpletests against.
  */
-function api_dev_tests_branch_data_import() {
+function _api_dev_tests_branch_data_import() {
   $document_root = str_replace('install.php', '', $_SERVER['SCRIPT_FILENAME']);
 
   $branch = (object) array(
@@ -79,7 +110,7 @@ function api_dev_tests_branch_data_import() {
 /**
  * Adjusts the default PHP branch to use the settings needed for simpletest.
  */
-function api_dev_php_branch_data_import() {
+function _api_dev_php_branch_data_import() {
   // Calculate the base URL to be used for the function summary file URL.
   $base_url = $_SERVER['HTTP_ORIGIN'] . str_replace('install.php', '', $_SERVER['SCRIPT_NAME']);
 
