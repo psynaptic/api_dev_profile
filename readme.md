@@ -37,3 +37,9 @@ invoke drush with the --no-gitinfofile option.
 drush make --working-copy --no-gitinfofile --prepare-install --contrib-destination=sites/all /path/to/api_dev.build [target]
 ```
 
+There is currently an implementation of hook_requirements which would stall the installation. The patch hosted on github removes the hook_requirements function altogether so the installer can run. To reverse this patch and get API module back to its initial state, run the following command:
+
+```
+curl https://raw.github.com/gist/1872130/52d2724608d46163c29d284fdba9500f2b853e6f/gistfile1.diff | git apply -R
+```
+
