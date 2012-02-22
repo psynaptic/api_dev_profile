@@ -34,7 +34,6 @@ projects[api][patch][] = https://raw.github.com/gist/1872130/52d2724608d46163c29
 projects[grammar_parser][type] = module
 projects[grammar_parser][download][type] = git
 projects[grammar_parser][download][url] = http://git.drupal.org/project/grammar_parser
-projects[grammar_parser][download][branch] = 7.x-1.x
 projects[grammar_parser][patch][] = http://drupal.org/files/issues/994518.patch
 
 ; Install Simpletest module, which requires some core patches to function.
