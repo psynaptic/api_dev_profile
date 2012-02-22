@@ -3,7 +3,7 @@ API Development Profile
 
 This is an installation profile for developing and testing the API module.
 
-PROFILE
+Details
 -------
 
 The build file will download and prepare a Drupal source tree containing the
@@ -15,22 +15,25 @@ following:
   fatal errors in tests" patch.
 * Grammar parser, autoload, ctools, devel, and drupal_queue modules.
 
-DEPENDENCIES
+The profile will enable the above modules and import some standard branch data
+used by the API module tests.
+
+Dependencies
 ------------
 
 * Drush 5.x (or an older version of drush and drush make).
 
-USAGE
+Usage
 -----
 
 ```
-drush make /path/to/api_dev.build <target>
+drush make /path/to/api_dev.build [target]
 ```
 
 If you want to stop drush make from adding metadata to info files you should
 invoke drush with the --no-gitinfofile option.
 
 ```
-drush make --working-copy --no-gitinfofile --prepare-install --contrib-destination=sites/all /path/to/api_dev.build <target>
+drush make --working-copy --no-gitinfofile --prepare-install --contrib-destination=sites/all /path/to/api_dev.build [target]
 ```
 
