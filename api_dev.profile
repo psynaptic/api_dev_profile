@@ -50,8 +50,6 @@ function api_dev_profile_tasks() {
   _api_dev_tests_branch_data_import();
   _api_dev_php_branch_data_import();
   _api_dev_set_blocks();
-
-  variable_set('site_frontpage', 'api/api');
 }
 
 function _api_dev_set_blocks() {
