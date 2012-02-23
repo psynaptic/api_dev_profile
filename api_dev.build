@@ -10,7 +10,7 @@ projects[drupal][version] = 6.x
 ; Installation profile
 projects[api_dev][type] = profile
 projects[api_dev][download][type] = git
-projects[api_dev][download][url] = https://github.com/psynaptic/api_dev_profile.git
+projects[api_dev][download][url] = http://git.drupal.org/project/api_dev
 projects[api_dev][download][branch] = 6.x-1.x
 
 ; Required contrib modules.
